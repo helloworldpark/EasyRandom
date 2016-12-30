@@ -10,3 +10,7 @@ import Foundation
 
 print("Hello, World!")
 
+testNorm()
+testRoot()
+testIntegral()
+testSplinePoint()
