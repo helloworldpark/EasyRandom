@@ -15,9 +15,13 @@ testRoot()
 testIntegral()
 testSplinePoint()
 
-let histogram = [Coord2D(x: 1.0, y: 0.1), Coord2D(x: 2.0, y: -0.2), Coord2D(x: 3.0, y: 0.3), Coord2D(x: 4.0, y: 0.4)]
-let discreteRandom = ERDiscrete(histogram: histogram)
+let discreteRandom = ERDiscreteGeneratorBuilder<String>()
+    .append(x: "a", p: 0.1)
+    .append(x: "b", p: 0.2)
+    .append(x: "c", p: 0.3)
+    .append(x: "d", p: 0.4)
+    .create()
 let randomVariable = discreteRandom.generate(count: 1000)
 for p in randomVariable {
-    print("p \(Int(p))")
+    print("p \(p)")
 }

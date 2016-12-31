@@ -9,10 +9,9 @@
 import Foundation
 
 protocol RandomVariable {
-    func generate() -> Double
-    func generate(count: Int) -> [Double]
-    
-
+    associatedtype T
+    func generate() -> T
+    func generate(count: Int) -> [T]
 }
 
 public class ERGenerator {
