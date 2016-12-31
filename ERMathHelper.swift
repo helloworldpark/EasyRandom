@@ -9,9 +9,25 @@
 import Foundation
 
 public class ERMathHelper {
-    private static let maxIteration = 10
-    private static let eps = 1.0e-10
+    fileprivate static let maxIteration = 10
+    fileprivate static let eps = 1.0e-10
+
+    public static func cubic(at x: Double, coefficent p: CubicPolynomial) -> Double {
+        return p.d + x * (p.c + x * (p.b + x * p.a))
+    }
     
+    public static func norm(_ a: [Double], _ b: [Double]) -> Double {
+        precondition(a.count == b.count && a.count > 0 && b.count > 0, "Mismatching vectors")
+        var norm = 0.0
+        for (x, y) in zip(a, b) {
+            norm += (x - y) * (x - y)
+        }
+        return sqrt(norm)
+    }
+}
+
+// MARK: Root Finding
+extension ERMathHelper {
     // findRoot(y, a, b, f(t))->x
     // Find x s.t. y = f(x)
     // Expecting that f(x) is monotone function
@@ -63,21 +79,6 @@ public class ERMathHelper {
         }
         return x_mid
     }
-    
-    public static func cubic(at x: Double, coefficent p: CubicPolynomial) -> Double {
-        return p.d + x * (p.c + x * (p.b + x * p.a))
-    }
-    
-    public static func norm(_ a: [Double], _ b: [Double]) -> Double {
-        precondition(a.count == b.count && a.count > 0 && b.count > 0, "Mismatching vectors")
-        var norm = 0.0
-        for (x, y) in zip(a, b) {
-            norm += (x - y) * (x - y)
-        }
-        return sqrt(norm)
-    }
-    
-    
 }
 
 // MARK: Spline Interpolation
