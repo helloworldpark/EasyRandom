@@ -14,9 +14,9 @@ public struct Coord2D: Equatable, RangeSearchable {
     let x: Double
     let y: Double
     
-    var searchby: Double {
+    var keyword: Double {
         get {
-            return y
+            return self.y
         }
     }
     
@@ -32,11 +32,12 @@ public struct Coord2D: Equatable, RangeSearchable {
 
 public struct Spline: Equatable, Comparable, RangeSearchable {
     private let dx: Double
+    private let dxdx: Double
     let from: Double
     let to: Double
     let cubic: CubicPolynomial
     
-    var searchby: Double {
+    var keyword: Double {
         get {
             return self.from
         }
@@ -46,7 +47,14 @@ public struct Spline: Equatable, Comparable, RangeSearchable {
         self.from = from
         self.to = to
         self.dx = to - from
+        self.dxdx = self.dx*self.dx/6.0
         self.cubic = cubic
+    }
+    
+    public func at(_ x: Double) -> Double {
+        let u = (self.to - x) / self.dx
+        let v = 1.0 - u
+        return self.dxdx*(v*(v*v - 1.0) * self.cubic.a + u*(u*u - 1.0) * self.cubic.b) +  v * self.cubic.c + u * self.cubic.d
     }
     
     public static func ==(lhs: Spline, rhs: Spline)->Bool {
@@ -67,13 +75,6 @@ public struct Spline: Equatable, Comparable, RangeSearchable {
     
     public static func >=(lhs: Spline, rhs: Spline)->Bool {
         return lhs.from >= rhs.from
-    }
-    
-    public func at(_ x: Double) -> Double {
-        let u = (self.to - x) / self.dx
-        let v = 1.0 - u
-        let dxdx = self.dx*self.dx/6.0
-        return dxdx*(v*(v*v - 1.0) * self.cubic.a + u*(u*u - 1.0) * self.cubic.b) +  v * self.cubic.c + u * self.cubic.d
     }
 }
 
@@ -97,7 +98,7 @@ public struct SplineMachine {
             if x < spline.first!.from {
                 return spline.first!.at(x)
             } else {
-                return spline[spline.count-1].at(x)
+                return spline.last!.at(x)
             }
         }
         return spline[indexRange.from].at(x)

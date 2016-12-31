@@ -13,14 +13,12 @@ public class ERDiscrete : RandomVariable {
     
     init(histogram: [Coord2D]) {
         precondition(histogram.count != 0, "Empty Histogram!")
-        let sum = histogram.reduce(0.0) { result, coord in
-            return result + coord.y
-        }
+        let sum = histogram.reduce(0.0) { result, coord in result + (coord.y >= 0.0 ? coord.y: 0.0) }
         var cumulative = [Coord2D](repeating: Coord2D(x: 0.0, y: 0.0), count: histogram.count+1)
         var cumsum = 0.0
         for i in 0..<histogram.count {
             cumulative[i] = Coord2D(x: histogram[i].x, y: cumsum / sum)
-            cumsum += histogram[i].y
+            cumsum += (histogram[i].y >= 0.0 ? histogram[i].y : 0.0)
         }
         // Dummy
         cumulative[cumulative.count-1] = Coord2D(x: histogram.last!.x + 1.0, y: 1.0)

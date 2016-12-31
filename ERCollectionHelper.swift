@@ -10,20 +10,20 @@ import Foundation
 
 protocol RangeSearchable {
     associatedtype T: Comparable
-    var searchby: T { get }
+    var keyword: T { get }
 }
 
 extension Collection where Iterator.Element: RangeSearchable, Index == Int {
     func rangeSearch(with y: Iterator.Element.T) -> (from: Int, to: Int)? {
-        guard y >= self[0].searchby && y < self[self.endIndex-1].searchby else {
+        guard y >= self[0].keyword && y < self[self.endIndex-1].keyword else {
             return nil
         }
         
         var startIdx = 0
         var lastIdx = self.endIndex - self.startIndex - 1
         var idx = (lastIdx + startIdx) / 2
-        var isYBigger = self[idx].searchby <= y
-        var isYSmaller = y < self[idx+1].searchby
+        var isYBigger = self[idx].keyword <= y
+        var isYSmaller = y < self[idx+1].keyword
         while (isYBigger && isYSmaller) == false {
             if isYBigger == true {
                 startIdx = idx
@@ -32,8 +32,8 @@ extension Collection where Iterator.Element: RangeSearchable, Index == Int {
             }
             idx = (lastIdx + startIdx)/2
             
-            isYBigger = self[idx].searchby <= y
-            isYSmaller = y < self[idx+1].searchby
+            isYBigger = self[idx].keyword <= y
+            isYSmaller = y < self[idx+1].keyword
         }
         return (from: idx, to: idx+1)
     }
@@ -52,28 +52,5 @@ extension Collection where Iterator.Element == Coord2D, Index == Int {
             return nil
         }
         return (x1: self[indexRange.from].x, x2: self[indexRange.to].x)
-        
-        
-//        guard y >= self[0].y && y < self[self.endIndex-1].y else {
-//            return nil
-//        }
-//        
-//        var startIdx = 0
-//        var lastIdx = self.endIndex - self.startIndex - 1
-//        var idx = (lastIdx + startIdx) / 2
-//        var isYBigger = self[idx].y <= y
-//        var isYSmaller = y < self[idx+1].y
-//        while (isYBigger && isYSmaller) == false {
-//            if isYBigger == true {
-//                startIdx = idx
-//            } else if isYSmaller == true {
-//                lastIdx = idx
-//            }
-//            idx = (lastIdx + startIdx)/2
-//            
-//            isYBigger = self[idx].y <= y
-//            isYSmaller = y < self[idx+1].y
-//        }
-//        return (x1: self[idx].x, x2: self[idx+1].x)
     }
 }
