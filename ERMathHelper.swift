@@ -11,6 +11,10 @@ import Foundation
 public class ERMathHelper {
     fileprivate static let maxIteration = 10
     fileprivate static let eps = 1.0e-10
+    
+    public static func random() -> Double {
+        return Double(arc4random())/Double(UINT32_MAX)
+    }
 
     public static func cubic(at x: Double, coefficent p: CubicPolynomial) -> Double {
         return p.d + x * (p.c + x * (p.b + x * p.a))

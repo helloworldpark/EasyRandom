@@ -8,7 +8,7 @@
 
 import Foundation
 
-internal struct DiscreteMapPair: Equatable, RangeSearchable {
+internal struct DiscreteVariable: Equatable, RangeSearchable {
     let x: Int
     let y: Double
     var keyword: Double {
@@ -20,30 +20,30 @@ internal struct DiscreteMapPair: Equatable, RangeSearchable {
         self.y = y
     }
     
-    static func ==(lhs: DiscreteMapPair, rhs: DiscreteMapPair) -> Bool {
+    static func ==(lhs: DiscreteVariable, rhs: DiscreteVariable) -> Bool {
         return lhs.x == rhs.x && lhs.y == rhs.y
     }
 }
 
 public class ERDiscreteMachine : RandomVariable {
-    let cumulated: [DiscreteMapPair]
+    let cumulated: [DiscreteVariable]
     
-    init(histogram: [DiscreteMapPair]) {
+    init(histogram: [DiscreteVariable]) {
         precondition(histogram.count != 0, "Empty Histogram!")
         let sum = histogram.reduce(0.0) { result, coord in result + (coord.y >= 0.0 ? coord.y: 0.0) }
-        var cumulative = [DiscreteMapPair](repeating: DiscreteMapPair(x: 0, y: 0.0), count: histogram.count+1)
+        var cumulative = [DiscreteVariable](repeating: DiscreteVariable(x: 0, y: 0.0), count: histogram.count+1)
         var cumsum = 0.0
         for i in 0..<histogram.count {
-            cumulative[i] = DiscreteMapPair(x: histogram[i].x, y: cumsum / sum)
+            cumulative[i] = DiscreteVariable(x: histogram[i].x, y: cumsum / sum)
             cumsum += (histogram[i].y >= 0.0 ? histogram[i].y : 0.0)
         }
         // Dummy
-        cumulative[cumulative.count-1] = DiscreteMapPair(x: histogram.last!.x + 1, y: 1.0)
+        cumulative[cumulative.count-1] = DiscreteVariable(x: histogram.last!.x + 1, y: 1.0)
         self.cumulated = cumulative
     }
     
     func generate() -> Int {
-        let u = Double(arc4random())/Double(UINT32_MAX)
+        let u = ERMathHelper.random()
         return self.cumulated[self.cumulated.rangeSearch(with: u)!.from].x
     }
     
@@ -61,11 +61,11 @@ public class ERDiscreteGenerator<T> : RandomVariable {
     private let variable: [T]
     
     fileprivate init(x: [T], probability: [Double]) {
-        precondition(x.count == probability.count, "Histogram does not match")
+        precondition(x.count == probability.count, "Size of X and Probability arrays do not match.")
         self.variable = x
-        var histogram = [DiscreteMapPair]()
+        var histogram = [DiscreteVariable]()
         for i in 0..<probability.count {
-            histogram.append(DiscreteMapPair(x: i, y: probability[i]))
+            histogram.append(DiscreteVariable(x: i, y: probability[i]))
         }
         self.discreteMachine = ERDiscreteMachine(histogram: histogram)
     }
@@ -75,9 +75,7 @@ public class ERDiscreteGenerator<T> : RandomVariable {
     }
     
     func generate(count: Int) -> [T] {
-        return discreteMachine.generate(count: count).map { index in
-            return self.variable[index]
-        }
+        return discreteMachine.generate(count: count).map { self.variable[$0] }
     }
 }
 
@@ -85,7 +83,7 @@ public class ERDiscreteGeneratorBuilder<T> {
     private var variable: [T]
     private var probability: [Double]
     
-    init () {
+    init() {
         self.variable = []
         self.probability = []
     }
