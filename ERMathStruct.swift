@@ -69,11 +69,10 @@ public struct Spline: Equatable, Comparable, RangeSearchable {
         return lhs.from >= rhs.from
     }
     
-    public func at(x: Double) -> Double {
+    public func at(_ x: Double) -> Double {
         let u = (self.to - x) / self.dx
         let v = 1.0 - u
         let dxdx = self.dx*self.dx/6.0
-//        print("u = \(u) v = \(v)")
         return dxdx*(v*(v*v - 1.0) * self.cubic.a + u*(u*u - 1.0) * self.cubic.b) +  v * self.cubic.c + u * self.cubic.d
     }
 }
@@ -93,15 +92,15 @@ public struct SplineMachine {
         self.spline = spline
     }
     
-    public func at(x: Double) -> Double {
+    public func at(_ x: Double) -> Double {
         guard let indexRange = spline.rangeSearch(with: x) else {
             if x < spline.first!.from {
-                return spline.first!.at(x: x)
+                return spline.first!.at(x)
             } else {
-                return spline[spline.count-1].at(x: x)
+                return spline[spline.count-1].at(x)
             }
         }
-        return spline[indexRange.from].at(x: x)
+        return spline[indexRange.from].at(x)
     }
     
     public func printSpline() {

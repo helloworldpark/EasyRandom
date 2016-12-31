@@ -44,9 +44,9 @@ func splineDataTester(data: [Coord2D]) {
     let spline = ERMathHelper.spline(data: data)
     var compare: [Coord2D] = []
     for i in 0..<data.count-1 {
-        compare.append(Coord2D(x: data[i].x, y: spline[i].at(x: data[i].x)))
+        compare.append(Coord2D(x: data[i].x, y: spline[i].at(data[i].x)))
     }
-    compare.append(Coord2D(x: data[data.count-1].x, y: spline[data.count-2].at(x: data[data.count-1].x)))
+    compare.append(Coord2D(x: data[data.count-1].x, y: spline[data.count-2].at(data[data.count-1].x)))
     let yData = data.map { $0.y }
     let yCompare = compare.map { $0.y }
     _ = reportVector(compare: yData, with: yCompare, title: "Spline at data")
@@ -64,8 +64,7 @@ func splineFuncTester(from: Double, to: Double, partition: Int, function f: (Dou
     for i in 0..<totalPart {
         let x = from + Double(i)*h
         data.append(Coord2D(x: x, y: f(x)))
-        compare.append(Coord2D(x: x, y: splineMachine.at(x: x)))
-        print("\(x) \(f(x)) \(splineMachine.at(x: x))")
+        compare.append(Coord2D(x: x, y: splineMachine.at(x)))
     }
     let yData = data.map { $0.y }
     let yCompare = compare.map { $0.y }
@@ -112,9 +111,6 @@ func testSplinePoint() {
     
     splineDataTester(data: coordspline)
     splineFuncTester(from: 0.0, to: M_PI * 2.5, partition: 2, function: cos)
-//    splineFuncTester(from: 0.0, to: M_PI * 2.5, partition: 3) { t in
-//        return pow(M_PI * 2.5, 3.0) -  t*t*t
-//    }
 }
 
 

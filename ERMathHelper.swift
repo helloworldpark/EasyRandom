@@ -78,7 +78,7 @@ public class ERMathHelper {
     
 }
 
-// Spline Interpolation
+// MARK: Spline Interpolation
 extension ERMathHelper {
     // spline(from, to, partition, function)->[Spline]
     public static func spline(from: Double, to: Double, partition: Int, function f: (Double)->Double)->[Spline] {
@@ -140,7 +140,7 @@ extension ERMathHelper {
     }
 }
 
-// Integration
+// MARK: Integration
 extension ERMathHelper {
     // integrate(from, to, function) -> Double
     // Definite Integral of f(x) from a to b
