@@ -17,6 +17,7 @@ public class ERMathHelper {
     // Expecting that f(x) is monotone function
     // Internally using bisection algorithm
     public static func root(find y: Double, from a: Double, to b:Double, function f: (Double)->Double)->Double {
+        precondition(y < f(b) && f(a) < y, "y = \(y) must be between f(from) = \(f(a)) and f(to) = \(f(b))")
         var iteration = 0
         
         var x_a = a
@@ -40,6 +41,7 @@ public class ERMathHelper {
     }
     
     public static func root(find y: Double, spline: Spline)->Double {
+        precondition(y < spline.at(spline.to) && spline.at(spline.from) < y, "y = \(y) must be between f(from) = \(spline.at(spline.from)) and f(to) = \(spline.at(spline.to))")
         var iteration = 0
         
         var x_a = spline.from

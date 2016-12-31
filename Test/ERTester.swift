@@ -110,7 +110,7 @@ func testSplinePoint() {
     coordspline.append(Coord2D(x: 4.0, y: sin(4.0)))
     
     splineDataTester(data: coordspline)
-    splineFuncTester(from: 0.0, to: M_PI * 2.5, partition: 2, function: cos)
+    splineFuncTester(from: 0.0, to: M_PI * 2.5, partition: 10000, function: cos)
 }
 
 
