@@ -75,7 +75,7 @@ public class ERDiscreteGenerator<T> : RandomVariable {
     }
     
     func generate(count: Int) -> [T] {
-        return discreteMachine.generate(count: count).map { self.variable[$0] }
+        return self.discreteMachine.generate(count: count).map { self.variable[$0] }
     }
 }
 

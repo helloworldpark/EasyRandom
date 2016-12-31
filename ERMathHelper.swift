@@ -30,6 +30,20 @@ public class ERMathHelper {
     }
 }
 
+// MARK: Analysis
+extension ERMathHelper {
+    public static func isFunctionNegative(from a: Double, to b: Double, partition p: Int = 8, function f: (Double)->Double)->Bool {
+        precondition(p > 0, "Partitioning must be bigger than 0")
+        let h = (b-a)/Double(p)
+        for i in 0...p {
+            if f(a + h*Double(i)) < 0.0 {
+                return true
+            }
+        }
+        return false
+    }
+}
+
 // MARK: Root Finding
 extension ERMathHelper {
     // findRoot(y, a, b, f(t))->x

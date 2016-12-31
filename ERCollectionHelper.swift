@@ -40,7 +40,6 @@ extension Collection where Iterator.Element: RangeSearchable, Index == Int {
 }
 
 extension Collection where Iterator.Element == Coord2D, Index == Int {
-    
     func sorted() -> [Coord2D] {
         return self.sorted { c1, c2 in
             return c1.y < c2.y

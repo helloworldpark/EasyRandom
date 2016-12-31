@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4F231FA51E168C6B00E5C7E5 /* ERTester.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F231FA41E168C6B00E5C7E5 /* ERTester.swift */; };
 		4F231FA71E1696FC00E5C7E5 /* ERMathStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F231FA61E1696FC00E5C7E5 /* ERMathStruct.swift */; };
+		4F231FA91E17B2D900E5C7E5 /* ERContinuous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F231FA81E17B2D900E5C7E5 /* ERContinuous.swift */; };
 		4F371E9F1E13EF3600E12008 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F371E9E1E13EF3600E12008 /* main.swift */; };
 		4F371EA11E13EFDD00E12008 /* RandomVariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F371EA01E13EFDD00E12008 /* RandomVariable.swift */; };
 		4F371EA51E14062B00E12008 /* ERMathHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F371EA41E14062B00E12008 /* ERMathHelper.swift */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		4F231FA41E168C6B00E5C7E5 /* ERTester.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ERTester.swift; path = Test/ERTester.swift; sourceTree = "<group>"; };
 		4F231FA61E1696FC00E5C7E5 /* ERMathStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ERMathStruct.swift; sourceTree = "<group>"; };
+		4F231FA81E17B2D900E5C7E5 /* ERContinuous.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ERContinuous.swift; sourceTree = "<group>"; };
 		4F371E921E13EDB700E12008 /* EasyRandom */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EasyRandom; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F371E9D1E13EF3600E12008 /* EasyRandom-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EasyRandom-Bridging-Header.h"; sourceTree = "<group>"; };
 		4F371E9E1E13EF3600E12008 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = main.swift; path = Sources/main.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				4F371E9D1E13EF3600E12008 /* EasyRandom-Bridging-Header.h */,
 				4F371EA01E13EFDD00E12008 /* RandomVariable.swift */,
 				4F5623291E15145200C5CDD7 /* ERDiscrete.swift */,
+				4F231FA81E17B2D900E5C7E5 /* ERContinuous.swift */,
 				4F371EA41E14062B00E12008 /* ERMathHelper.swift */,
 				4F231FA61E1696FC00E5C7E5 /* ERMathStruct.swift */,
 				4F79C1B41E15F83800D4C180 /* ERCollectionHelper.swift */,
@@ -152,6 +155,7 @@
 				4F231FA71E1696FC00E5C7E5 /* ERMathStruct.swift in Sources */,
 				4F371EA11E13EFDD00E12008 /* RandomVariable.swift in Sources */,
 				4F56232A1E15145200C5CDD7 /* ERDiscrete.swift in Sources */,
+				4F231FA91E17B2D900E5C7E5 /* ERContinuous.swift in Sources */,
 				4F371E9F1E13EF3600E12008 /* main.swift in Sources */,
 				4F79C1B51E15F83800D4C180 /* ERCollectionHelper.swift in Sources */,
 				4F371EA51E14062B00E12008 /* ERMathHelper.swift in Sources */,
