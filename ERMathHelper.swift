@@ -82,7 +82,7 @@ public class ERMathHelper {
 extension ERMathHelper {
     // spline(from, to, partition, function)->[Spline]
     public static func spline(from: Double, to: Double, partition: Int, function f: (Double)->Double)->[Spline] {
-        precondition(partition >= 3, "Partition should be equal or more than 3 for spline interpolation")
+        precondition(partition > 2, "Partition should be equal or more than 3 for spline interpolation")
         var data = [Coord2D](repeating: Coord2D(x: 0.0, y: 0.0), count: partition+1)
         let h = (to - from) / Double(partition)
         for i in 0...partition {
@@ -95,45 +95,37 @@ extension ERMathHelper {
     // spline(data: [Coord2D])->[Spline]
     public static func spline(data: [Coord2D])->[Spline] {
         // Assume that datas are N+1, 0 to N
-        precondition(data.count > 3, "Data not enough for spline interpolation")
         let N = data.count-1
+        precondition(N > 2, "Data not enough for spline interpolation")
+        
         // Prepare array of second derivatives
         // Set initial data: f''_0 = 0, f''_n+1 = 0
         var d2 = [Double](repeating: 0.0, count: N+1)
         
         // Prepare lhs and rhs of data
-        var lhs = [[Double]](repeating: [Double](repeating: 0.0, count: 3), count: N-1)
-        var rhs = [Double](repeating: 0.0, count: N-1)
-        lhs[0][1] = data[2].x - data[0].x
-        lhs[0][2] = (data[2].x - data[1].x) * 2.0
-        rhs[0] = (6.0 * data[2].y - 6.0 * data[1].y) / (data[2].x - data[1].x)
-            - (6.0 * data[1].y - 6.0 * data[0].y) / (data[1].x - data[0].x)
-        if N-3 > 0 {
-            for i in 1...(N-3) {
-                lhs[i][0] = data[i].x - data[i-1].x
-                lhs[i][1] = (data[i+1].x - data[i-1].x) * 2.0
-                lhs[i][2] = data[i+1].x - data[i].x
-                rhs[i] = (6.0 * data[i+1].y - 6.0 * data[i].y) / (data[i+1].x - data[i].x)
-                    - (6.0 * data[i].y - 6.0 * data[i-1].y) / (data[i].x - data[i-1].x)
-            }
+        var lhs = [[Double]](repeating: [Double](repeating: 0.0, count: 3), count: N+1)
+        var rhs = [Double](repeating: 0.0, count: N+1)
+
+        for i in 1...(N-1) {
+            lhs[i][0] = (data[i].x - data[i-1].x) / (data[i+1].x - data[i-1].x)
+            lhs[i][1] = 2.0
+            lhs[i][2] = 1.0 - lhs[i][0]
+            rhs[i] = (data[i+1].y - data[i].y) / (data[i+1].x - data[i].x) - (data[i].y - data[i-1].y) / (data[i].x - data[i-1].x)
+            rhs[i] *= (6.0 / (data[i+1].x - data[i-1].x))
         }
-        lhs[N-2][0] = data[N-1].x - data[N-2].x
-        lhs[N-2][1] = (data[N].x - data[N-2].x) * 2.0
-        rhs[N-2] = (6.0 * data[N-1].y - 6.0 * data[N-2].y) / (data[N-1].x - data[N-2].x)
-            - (6.0 * data[N-2].y - 6.0 * data[N-3].y) / (data[N-2].x - data[N-3].x)
         
         // Solve by Tridiagonal matrix algorithm
         // Process second column of lhs, then rhs
-        lhs[0][2] = lhs[0][2] / lhs[0][1]
-        rhs[0] = rhs[0] / lhs[0][1]
-        for i in 1..<(N-2) {
-            lhs[i][2] = lhs[i][2] / (lhs[i][1] - lhs[i][0]*lhs[i-1][2])
-            rhs[i]    = (rhs[i] - lhs[i][0]*rhs[i-1]) / (lhs[i][1] - lhs[i][0]*lhs[i-1][2])
+        lhs[1][2] /= lhs[1][1]
+        rhs[1]    /= lhs[1][1]
+        for i in 2..<(N-1) {
+            lhs[i][2] /= (lhs[i][1] - lhs[i][0]*lhs[i-1][2])
+            rhs[i]     = (rhs[i] - lhs[i][0]*rhs[i-1]) / (lhs[i][1] - lhs[i][0]*lhs[i-1][2])
         }
-        rhs[N-2] = (rhs[N-2] - lhs[N-2][0]*rhs[N-3]) / (lhs[N-2][1] - lhs[N-2][0]*lhs[N-3][2])
+        rhs[N-1] = (rhs[N-1] - lhs[N-1][0]*rhs[N-2]) / (lhs[N-1][1] - lhs[N-1][0]*lhs[N-2][2])
         
         // Calculate cubic coefficients
-        d2[N-1] = rhs[N-2]
+        d2[N-1] = rhs[N-1]
         for i in (1...N-2).reversed() {
             d2[i] = rhs[i] - lhs[i][2]*d2[i+1]
         }
@@ -144,7 +136,6 @@ extension ERMathHelper {
             let coef : CubicPolynomial = (a: d2[i+1], b: d2[i], c: data[i+1].y, d: data[i].y)
             spline.append(Spline(from: data[i].x, to: data[i+1].x, cubic: coef))
         }
-        
         return spline
     }
 }

@@ -101,7 +101,6 @@ public struct SplineMachine {
                 return spline[spline.count-1].at(x: x)
             }
         }
-//        print("indexRange \(indexRange)")
         return spline[indexRange.from].at(x: x)
     }
     

@@ -22,7 +22,7 @@ func report(expect: Double, actual: Double, title: String, error: Double = 1.0e-
 
 func reportVector(compare: [Double], with: [Double], title: String, error: Double = 1.0e-10) -> Bool {
     print("Test \(title)")
-    let err = ERMathHelper.norm(compare, with)
+    let err = ERMathHelper.norm(compare, with)/Double(compare.count)
     if err < error {
         print("*******Test success: error is \(err)")
         return true
@@ -67,7 +67,6 @@ func splineFuncTester(from: Double, to: Double, partition: Int, function f: (Dou
         compare.append(Coord2D(x: x, y: splineMachine.at(x: x)))
         print("\(x) \(f(x)) \(splineMachine.at(x: x))")
     }
-    splineMachine.printSpline()
     let yData = data.map { $0.y }
     let yCompare = compare.map { $0.y }
     _ = reportVector(compare: yData, with: yCompare, title: "Spline at function")
@@ -96,7 +95,7 @@ func testIntegral() {
     integralTester(from: 0.0, to: M_PI, partition: 10, expect: 2.0, function: sin)
     integralTester(from: 0.0, to: M_PI, partition: 20, expect: 2.0, function: sin)
     integralTester(from: 0.0, to: M_PI, partition: 30, expect: 2.0, function: sin)
-    integralTester(from: 0.0, to: M_PI, partition: 40, expect: 2.0, function: sin)
+    integralTester(from: 0.0, to: M_PI*2.5, partition: 3, expect: 1.0, function: cos)
 }
 
 func testSplinePoint() {
@@ -112,7 +111,10 @@ func testSplinePoint() {
     coordspline.append(Coord2D(x: 4.0, y: sin(4.0)))
     
     splineDataTester(data: coordspline)
-    splineFuncTester(from: 0.0, to: M_PI * 2.5, partition: 4, function: cos)
+    splineFuncTester(from: 0.0, to: M_PI * 2.5, partition: 2, function: cos)
+//    splineFuncTester(from: 0.0, to: M_PI * 2.5, partition: 3) { t in
+//        return pow(M_PI * 2.5, 3.0) -  t*t*t
+//    }
 }
 
 
