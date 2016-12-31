@@ -19,24 +19,13 @@ public class ERContinuousMachine: RandomVariable {
         precondition(p > 0, "Partitioning must be bigger than 0")
         precondition(ERMathHelper.isFunctionNegative(from: from, to: to, function: f) == false, "Probability Density function must be positive")
         
-        // Find integral of the function for each partition
-        let h = (to - from) / Double(p)
-        var invCdf = [ContinuousVariable](repeating: ContinuousVariable(x:0.0, y:0.0), count: p+1)
-        invCdf[0] = ContinuousVariable(x:0.0, y: from)
-        for i in 1...p {
-            let x1 = from + h * Double(i-1)
-            let x2 = from + h * Double(i)
-            let integral = ERMathHelper.integrate4(from: x1, to: x2, function: f)
-            invCdf[i] = ContinuousVariable(x: integral + invCdf[i-1].x, y: x2)
+        var p_new = p
+        var candidateCDF = ERContinuousMachine.inverseCDF(from: from, to: to, partition: p_new, pdf: f)
+        while candidateCDF.norm > 0.01 {
+            p_new *= 2
+            candidateCDF = ERContinuousMachine.inverseCDF(from: from, to: to, partition: p_new, pdf: f)
         }
-        let totalIntegral = invCdf.last!.x
-        for i in 0...p {
-            invCdf[i] = ContinuousVariable(x: invCdf[i].x/totalIntegral, y: invCdf[i].y)
-            print("\(i) \(invCdf[i])")
-        }
-        
-        // Construct Cumulative Distribution Function using Spline 
-        self.inverseCDF = SplineMachine(data: invCdf)
+        self.inverseCDF = candidateCDF
     }
     
     func generate() -> Double {
@@ -51,7 +40,29 @@ public class ERContinuousMachine: RandomVariable {
         return arr
     }
     
+    func isMonotoneIncreasing() -> Bool {
+        return self.inverseCDF.isMonotoneIncreasing()
+    }
+    
     func showInverseCDF() {
-        self.inverseCDF.graphOf()
+        self.inverseCDF.printGraph()
+    }
+    
+    private static func inverseCDF(from: Double, to: Double, partition p: Int, pdf f: (Double)->Double) -> SplineMachine {
+        // Find integral of the function for each partition
+        let h = (to - from) / Double(p)
+        var invCdf = [ContinuousVariable](repeating: ContinuousVariable(x:0.0, y:0.0), count: p+1)
+        invCdf[0] = ContinuousVariable(x:0.0, y: from)
+        for i in 1...p {
+            let x1 = from + h * Double(i-1)
+            let x2 = from + h * Double(i)
+            let integral = ERMathHelper.integrate4(from: x1, to: x2, function: f)
+            invCdf[i] = ContinuousVariable(x: integral + invCdf[i-1].x, y: x2)
+        }
+        let totalIntegral = invCdf.last!.x
+        for i in 0...p {
+            invCdf[i] = ContinuousVariable(x: invCdf[i].x/totalIntegral, y: invCdf[i].y)
+        }
+        return SplineMachine(data: invCdf)
     }
 }

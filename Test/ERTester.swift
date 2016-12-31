@@ -20,6 +20,16 @@ func report(expect: Double, actual: Double, title: String, error: Double = 1.0e-
     }
 }
 
+func reportBool(expect: Bool, actual: Bool, title: String) -> Bool {
+    if expect == actual {
+        print("*******Test success: expected \(expect) actual \(actual)")
+        return true
+    } else {
+        print("!!!!!!!Test failed: expected \(expect) actual \(actual)")
+        return false
+    }
+}
+
 func reportVector(compare: [Double], with: [Double], title: String, error: Double = 1.0e-10) -> Bool {
     print("Test \(title)")
     let err = ERMathHelper.norm(compare, with)/Double(compare.count)
@@ -111,6 +121,10 @@ func testSplinePoint() {
     
     splineDataTester(data: coordspline)
     splineFuncTester(from: 0.0, to: M_PI * 2.5, partition: 100, function: cos)
+}
+
+func testIsFunctionNegative() {
+    _ = reportBool(expect: true, actual: ERMathHelper.isFunctionNegative(from: 0.0, to: 2.0*M_PI, function: sin), title: "Sine Negative")
 }
 
 
