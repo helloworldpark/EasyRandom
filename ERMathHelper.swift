@@ -144,93 +144,63 @@ extension ERMathHelper {
 
 // MARK: Integration
 extension ERMathHelper {
+    internal static let defaultPartition = 100
+    
+    private static let gauss2 = [-0.5773502691896257: 1.0,
+                                 0.5773502691896257: 1.0]
+    
+    private static let gauss3 = [-0.7745966692414834: 0.5555555555555555,
+                                 0.0: 0.8888888888888888,
+                                 0.7745966692414834: 0.5555555555555555]
+    
+    private static let gauss4 = [-0.8611363115940526: 0.3478548451374539,
+                                 -0.3399810435848563: 0.6521451548625461,
+                                 0.3399810435848563: 0.6521451548625461,
+                                 0.8611363115940526: 0.3478548451374539]
     // integrate(from, to, function) -> Double
     // Definite Integral of f(x) from a to b
     // Internally using Repeated Gaussian Quadrature of n = 2
-    public static func integrate(from a: Double, to b: Double, function f: (Double)->Double)->Double {
-        return ERIntegrate.integrate2(from: a, to: b, partition: ERIntegrate.defaultPartition, function: f)
+    
+    public static func integrate(from a: Double, to b: Double, partition n: Int = ERMathHelper.defaultPartition, function f: (Double)->Double)->Double {
+        return ERMathHelper.integrate2(from: a, to: b, partition: n, function: f)
     }
     
-    public static func integrate(from a: Double, to b: Double, partition n: Int, function f: (Double)->Double)->Double {
-        return ERIntegrate.integrate2(from: a, to: b, partition: n, function: f)
-    }
-    
-    public static func integrate2(from a: Double, to b: Double, function f: (Double)->Double)->Double {
-        return ERIntegrate.integrate2(from: a, to: b, partition: ERIntegrate.defaultPartition, function: f)
-    }
-    
-    public static func integrate2(from a: Double, to b: Double, partition n: Int, function f: (Double)->Double)->Double {
-        return ERIntegrate.integrate2(from: a, to: b, partition: n, function: f)
-    }
-    
-    public static func integrate3(from a: Double, to b: Double, function f: (Double)->Double)->Double {
-        return ERIntegrate.integrate3(from: a, to: b, partition: ERIntegrate.defaultPartition, function: f)
-    }
-    
-    public static func integrate3(from a: Double, to b: Double, partition n: Int, function f: (Double)->Double)->Double {
-        return ERIntegrate.integrate3(from: a, to: b, partition: n, function: f)
-    }
-    
-    public static func integrate4(from a: Double, to b: Double, function f: (Double)->Double)->Double {
-        return ERIntegrate.integrate4(from: a, to: b, partition: ERIntegrate.defaultPartition, function: f)
-    }
-    
-    public static func integrate4(from a: Double, to b: Double, partition n: Int, function f: (Double)->Double)->Double {
-        return ERIntegrate.integrate4(from: a, to: b, partition: n, function: f)
-    }
-    
-    private class ERIntegrate {
-        internal static let defaultPartition = 100
-        
-        private static let gauss2 = [-0.5773502691896257: 1.0,
-                                     0.5773502691896257: 1.0]
-        
-        private static let gauss3 = [-0.7745966692414834: 0.5555555555555555,
-                                     0.0: 0.8888888888888888,
-                                     0.7745966692414834: 0.5555555555555555]
-        
-        private static let gauss4 = [-0.8611363115940526: 0.3478548451374539,
-                                     -0.3399810435848563: 0.6521451548625461,
-                                     0.3399810435848563: 0.6521451548625461,
-                                     0.8611363115940526: 0.3478548451374539]
-        
-        internal static func integrate2(from a: Double, to b: Double, partition n: Int, function f: (Double)->Double)->Double {
-            var result = 0.0
-            let h = (b-a)/Double(n)
-            let cc = h*0.5
-            for i in 0..<n {
-                let aa = a+h*Double(i)
-                for coef in ERIntegrate.gauss2 {
-                    result += coef.value * f(aa + cc * (coef.key + 1.0))
-                }
+    public static func integrate2(from a: Double, to b: Double, partition n: Int = ERMathHelper.defaultPartition, function f: (Double)->Double)->Double {
+        var result = 0.0
+        let h = (b-a)/Double(n)
+        let cc = h*0.5
+        for i in 0..<n {
+            let aa = a+h*Double(i)
+            for coef in ERMathHelper.gauss2 {
+                result += coef.value * f(aa + cc * (coef.key + 1.0))
             }
-            return cc * result
         }
-        
-        internal static func integrate3(from a: Double, to b: Double, partition n: Int, function f: (Double)->Double)->Double {
-            var result = 0.0
-            let h = (b-a)/Double(n)
-            let cc = h*0.5
-            for i in 0..<n {
-                let aa = a+h*Double(i)
-                for coef in ERIntegrate.gauss3 {
-                    result += coef.value * f(aa + cc * (coef.key + 1.0))
-                }
+        return cc * result
+    }
+    
+    public static func integrate3(from a: Double, to b: Double, partition n: Int = ERMathHelper.defaultPartition, function f: (Double)->Double)->Double {
+        var result = 0.0
+        let h = (b-a)/Double(n)
+        let cc = h*0.5
+        for i in 0..<n {
+            let aa = a+h*Double(i)
+            for coef in ERMathHelper.gauss3 {
+                result += coef.value * f(aa + cc * (coef.key + 1.0))
             }
-            return cc * result
         }
-        
-        internal static func integrate4(from a: Double, to b: Double, partition n: Int, function f: (Double)->Double)->Double {
-            var result = 0.0
-            let h = (b-a)/Double(n)
-            let cc = h*0.5
-            for i in 0..<n {
-                let aa = a+h*Double(i)
-                for coef in ERIntegrate.gauss4 {
-                    result += coef.value * f(aa + cc * (coef.key + 1.0))
-                }
+        return cc * result
+    }
+    
+    public static func integrate4(from a: Double, to b: Double, partition n: Int = ERMathHelper.defaultPartition, function f: (Double)->Double)->Double {
+        var result = 0.0
+        let h = (b-a)/Double(n)
+        let cc = h*0.5
+        for i in 0..<n {
+            let aa = a+h*Double(i)
+            for coef in ERMathHelper.gauss4 {
+                result += coef.value * f(aa + cc * (coef.key + 1.0))
             }
-            return cc * result
         }
+        return cc * result
     }
 }
