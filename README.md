@@ -1,9 +1,8 @@
 # EasyRandom
-EasyRandom is a random number generator written in Swift.
-
-## Examples
+EasyRandom is a Swift random number generator for a given distribution.
+## Examples 
 #### Discrete Random Generator
-Generate discrete items using ```ERDiscreteBuilder<T>```.
+Generate discrete random items using ```ERDiscreteBuilder<T>```.
 ```Swift
 let discreteBuilder = ERDiscreteBuilder<String>()
 _ = discreteBuilder.append(x: "Foo", p: 0.42).append(x: "Bar", p: 0.58)
@@ -45,7 +44,7 @@ for x in byICDF {
 <img src="https://github.com/helloworldpark/helloworldpark.github.com/blob/master/images/2017-01-01-conti03.png">
 </p>
 
-Note that the integral of probability density function need not be 1. The module will compensate for it.
+Note that the integral of probability density functions need not be 1. The module will compensate for it.
 
 ## Implementation
 ### Random Number Generation
@@ -79,4 +78,4 @@ end
  - Xcode 8.2 or higher
 
 ## License
-MIT License.
+MIT License
