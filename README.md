@@ -4,7 +4,7 @@ EasyRandom is a random number generator written in Swift.
 ## Examples
 #### Discrete Random Generator
 Generate discrete items using ```ERDiscreteBuilder<T>```.
-```
+```Swift
 let discreteBuilder = ERDiscreteBuilder<String>()
 _ = discreteBuilder.append(x: "Foo", p: 0.42).append(x: "Bar", p: 0.58)
 let discreteRandoms = discreteBuilder.create().generate(count: 10000)
@@ -17,7 +17,7 @@ for foobar in discreteRandoms {
 </p>
 #### Continuous Random Generator
 Generate continuous random numbers using ```ERContinuousFactory```.
-```
+```Swift
 // Instantiate factory
 let continuousFactory = ERContinuousFactory(from: 0.0, to: M_PI)
 // Using Probability Density Function
@@ -63,7 +63,7 @@ The calculation is the lightest. It merely calculates the function.
 
 ## Installation
 You can install EasyRandom via CocoaPods
-```
+```CocoaPods
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.0'
 use_frameworks!
