@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4F371E911E13EDB700E12008"
-               BuildableName = "EasyRandom"
+               BlueprintIdentifier = "4F76EFA01E18D8880013BA91"
+               BuildableName = "EasyRandom.framework"
                BlueprintName = "EasyRandom"
                ReferencedContainer = "container:EasyRandom.xcodeproj">
             </BuildableReference>
@@ -32,8 +32,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4F371E911E13EDB700E12008"
-            BuildableName = "EasyRandom"
+            BlueprintIdentifier = "4F76EFA01E18D8880013BA91"
+            BuildableName = "EasyRandom.framework"
             BlueprintName = "EasyRandom"
             ReferencedContainer = "container:EasyRandom.xcodeproj">
          </BuildableReference>
@@ -55,8 +55,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4F371E911E13EDB700E12008"
-            BuildableName = "EasyRandom"
+            BlueprintIdentifier = "4F76EFA01E18D8880013BA91"
+            BuildableName = "EasyRandom.framework"
             BlueprintName = "EasyRandom"
             ReferencedContainer = "container:EasyRandom.xcodeproj">
          </BuildableReference>
@@ -74,8 +74,8 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4F371E911E13EDB700E12008"
-            BuildableName = "EasyRandom"
+            BlueprintIdentifier = "4F76EFA01E18D8880013BA91"
+            BuildableName = "EasyRandom.framework"
             BlueprintName = "EasyRandom"
             ReferencedContainer = "container:EasyRandom.xcodeproj">
          </BuildableReference>

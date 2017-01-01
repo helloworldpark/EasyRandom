@@ -7,26 +7,30 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4F231FB31E18B5F900E5C7E5 /* ERCollectionHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F231FAD1E18B5F900E5C7E5 /* ERCollectionHelper.swift */; };
-		4F231FB41E18B5F900E5C7E5 /* ERContinuous.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F231FAE1E18B5F900E5C7E5 /* ERContinuous.swift */; };
-		4F231FB51E18B5F900E5C7E5 /* ERDiscrete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F231FAF1E18B5F900E5C7E5 /* ERDiscrete.swift */; };
-		4F231FB61E18B5F900E5C7E5 /* ERMathHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F231FB01E18B5F900E5C7E5 /* ERMathHelper.swift */; };
-		4F231FB71E18B5F900E5C7E5 /* ERMathStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F231FB11E18B5F900E5C7E5 /* ERMathStruct.swift */; };
-		4F231FB81E18B5F900E5C7E5 /* ERSpline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F231FB21E18B5F900E5C7E5 /* ERSpline.swift */; };
-		4F371EA11E13EFDD00E12008 /* ERGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F371EA01E13EFDD00E12008 /* ERGenerator.swift */; };
+		4F4FCECC1E18E1B800540AF9 /* EasyRandom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F4FCEC31E18E1B800540AF9 /* EasyRandom.framework */; };
+		4F4FCED11E18E1B800540AF9 /* EasyRandom_macosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4FCED01E18E1B800540AF9 /* EasyRandom_macosTests.swift */; };
+		4F4FCED31E18E1B800540AF9 /* EasyRandom-macos.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F4FCEC51E18E1B800540AF9 /* EasyRandom-macos.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4F76EFAA1E18D8890013BA91 /* EasyRandom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4F76EFA11E18D8880013BA91 /* EasyRandom.framework */; };
+		4F76EFAF1E18D8890013BA91 /* EasyRandomTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F76EFAE1E18D8890013BA91 /* EasyRandomTests.swift */; };
+		4F76EFB11E18D8890013BA91 /* EasyRandom.h in Headers */ = {isa = PBXBuildFile; fileRef = 4F76EFA31E18D8880013BA91 /* EasyRandom.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		4F371E901E13EDB700E12008 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 1;
+/* Begin PBXContainerItemProxy section */
+		4F4FCECD1E18E1B800540AF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F371E8A1E13EDB700E12008 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F4FCEC21E18E1B800540AF9;
+			remoteInfo = "EasyRandom-macos";
 		};
-/* End PBXCopyFilesBuildPhase section */
+		4F76EFAB1E18D8890013BA91 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4F371E8A1E13EDB700E12008 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4F76EFA01E18D8880013BA91;
+			remoteInfo = EasyRandom;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		4F231FAD1E18B5F900E5C7E5 /* ERCollectionHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ERCollectionHelper.swift; path = Sources/ERCollectionHelper.swift; sourceTree = "<group>"; };
@@ -35,16 +39,51 @@
 		4F231FB01E18B5F900E5C7E5 /* ERMathHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ERMathHelper.swift; path = Sources/ERMathHelper.swift; sourceTree = "<group>"; };
 		4F231FB11E18B5F900E5C7E5 /* ERMathStruct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ERMathStruct.swift; path = Sources/ERMathStruct.swift; sourceTree = "<group>"; };
 		4F231FB21E18B5F900E5C7E5 /* ERSpline.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ERSpline.swift; path = Sources/ERSpline.swift; sourceTree = "<group>"; };
-		4F371E921E13EDB700E12008 /* EasyRandom */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = EasyRandom; sourceTree = BUILT_PRODUCTS_DIR; };
 		4F371E9D1E13EF3600E12008 /* EasyRandom-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EasyRandom-Bridging-Header.h"; sourceTree = "<group>"; };
 		4F371EA01E13EFDD00E12008 /* ERGenerator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ERGenerator.swift; path = Sources/ERGenerator.swift; sourceTree = "<group>"; };
+		4F4FCEC31E18E1B800540AF9 /* EasyRandom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EasyRandom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F4FCEC51E18E1B800540AF9 /* EasyRandom-macos.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EasyRandom-macos.h"; sourceTree = "<group>"; };
+		4F4FCEC61E18E1B800540AF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F4FCECB1E18E1B800540AF9 /* EasyRandom-macosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "EasyRandom-macosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F4FCED01E18E1B800540AF9 /* EasyRandom_macosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyRandom_macosTests.swift; sourceTree = "<group>"; };
+		4F4FCED21E18E1B800540AF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F76EF851E18D4880013BA91 /* main.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		4F76EFA11E18D8880013BA91 /* EasyRandom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = EasyRandom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F76EFA31E18D8880013BA91 /* EasyRandom.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = EasyRandom.h; sourceTree = "<group>"; };
+		4F76EFA41E18D8880013BA91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4F76EFA91E18D8880013BA91 /* EasyRandomTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EasyRandomTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4F76EFAE1E18D8890013BA91 /* EasyRandomTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EasyRandomTests.swift; sourceTree = "<group>"; };
+		4F76EFB01E18D8890013BA91 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		4F371E8F1E13EDB700E12008 /* Frameworks */ = {
+		4F4FCEBF1E18E1B800540AF9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F4FCEC81E18E1B800540AF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F4FCECC1E18E1B800540AF9 /* EasyRandom.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F76EF9D1E18D8880013BA91 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F76EFA61E18D8880013BA91 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F76EFAA1E18D8890013BA91 /* EasyRandom.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,6 +94,10 @@
 			isa = PBXGroup;
 			children = (
 				4F371E9C1E13EF2A00E12008 /* Sources */,
+				4F76EFA21E18D8880013BA91 /* EasyRandom */,
+				4F76EFAD1E18D8890013BA91 /* EasyRandomTests */,
+				4F4FCEC41E18E1B800540AF9 /* EasyRandom-macos */,
+				4F4FCECF1E18E1B800540AF9 /* EasyRandom-macosTests */,
 				4F371E931E13EDB700E12008 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -62,7 +105,10 @@
 		4F371E931E13EDB700E12008 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4F371E921E13EDB700E12008 /* EasyRandom */,
+				4F76EFA11E18D8880013BA91 /* EasyRandom.framework */,
+				4F76EFA91E18D8880013BA91 /* EasyRandomTests.xctest */,
+				4F4FCEC31E18E1B800540AF9 /* EasyRandom.framework */,
+				4F4FCECB1E18E1B800540AF9 /* EasyRandom-macosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -70,6 +116,7 @@
 		4F371E9C1E13EF2A00E12008 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				4F76EF851E18D4880013BA91 /* main.swift */,
 				4F231FAD1E18B5F900E5C7E5 /* ERCollectionHelper.swift */,
 				4F231FAE1E18B5F900E5C7E5 /* ERContinuous.swift */,
 				4F231FAF1E18B5F900E5C7E5 /* ERDiscrete.swift */,
@@ -82,16 +129,108 @@
 			name = Sources;
 			sourceTree = "<group>";
 		};
+		4F4FCEC41E18E1B800540AF9 /* EasyRandom-macos */ = {
+			isa = PBXGroup;
+			children = (
+				4F4FCEC51E18E1B800540AF9 /* EasyRandom-macos.h */,
+				4F4FCEC61E18E1B800540AF9 /* Info.plist */,
+			);
+			path = "EasyRandom-macos";
+			sourceTree = "<group>";
+		};
+		4F4FCECF1E18E1B800540AF9 /* EasyRandom-macosTests */ = {
+			isa = PBXGroup;
+			children = (
+				4F4FCED01E18E1B800540AF9 /* EasyRandom_macosTests.swift */,
+				4F4FCED21E18E1B800540AF9 /* Info.plist */,
+			);
+			path = "EasyRandom-macosTests";
+			sourceTree = "<group>";
+		};
+		4F76EFA21E18D8880013BA91 /* EasyRandom */ = {
+			isa = PBXGroup;
+			children = (
+				4F76EFA31E18D8880013BA91 /* EasyRandom.h */,
+				4F76EFA41E18D8880013BA91 /* Info.plist */,
+			);
+			path = EasyRandom;
+			sourceTree = "<group>";
+		};
+		4F76EFAD1E18D8890013BA91 /* EasyRandomTests */ = {
+			isa = PBXGroup;
+			children = (
+				4F76EFAE1E18D8890013BA91 /* EasyRandomTests.swift */,
+				4F76EFB01E18D8890013BA91 /* Info.plist */,
+			);
+			path = EasyRandomTests;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		4F4FCEC01E18E1B800540AF9 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F4FCED31E18E1B800540AF9 /* EasyRandom-macos.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F76EF9E1E18D8880013BA91 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F76EFB11E18D8890013BA91 /* EasyRandom.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
-		4F371E911E13EDB700E12008 /* EasyRandom */ = {
+		4F4FCEC21E18E1B800540AF9 /* EasyRandom-macos */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4F371E991E13EDB700E12008 /* Build configuration list for PBXNativeTarget "EasyRandom" */;
+			buildConfigurationList = 4F4FCED81E18E1B800540AF9 /* Build configuration list for PBXNativeTarget "EasyRandom-macos" */;
 			buildPhases = (
-				4F371E8E1E13EDB700E12008 /* Sources */,
-				4F371E8F1E13EDB700E12008 /* Frameworks */,
-				4F371E901E13EDB700E12008 /* CopyFiles */,
+				4F4FCEBE1E18E1B800540AF9 /* Sources */,
+				4F4FCEBF1E18E1B800540AF9 /* Frameworks */,
+				4F4FCEC01E18E1B800540AF9 /* Headers */,
+				4F4FCEC11E18E1B800540AF9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "EasyRandom-macos";
+			productName = "EasyRandom-macos";
+			productReference = 4F4FCEC31E18E1B800540AF9 /* EasyRandom.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		4F4FCECA1E18E1B800540AF9 /* EasyRandom-macosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F4FCED91E18E1B800540AF9 /* Build configuration list for PBXNativeTarget "EasyRandom-macosTests" */;
+			buildPhases = (
+				4F4FCEC71E18E1B800540AF9 /* Sources */,
+				4F4FCEC81E18E1B800540AF9 /* Frameworks */,
+				4F4FCEC91E18E1B800540AF9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F4FCECE1E18E1B800540AF9 /* PBXTargetDependency */,
+			);
+			name = "EasyRandom-macosTests";
+			productName = "EasyRandom-macosTests";
+			productReference = 4F4FCECB1E18E1B800540AF9 /* EasyRandom-macosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		4F76EFA01E18D8880013BA91 /* EasyRandom */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F76EFB21E18D8890013BA91 /* Build configuration list for PBXNativeTarget "EasyRandom" */;
+			buildPhases = (
+				4F76EF9C1E18D8880013BA91 /* Sources */,
+				4F76EF9D1E18D8880013BA91 /* Frameworks */,
+				4F76EF9E1E18D8880013BA91 /* Headers */,
+				4F76EF9F1E18D8880013BA91 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -99,8 +238,26 @@
 			);
 			name = EasyRandom;
 			productName = EasyRandom;
-			productReference = 4F371E921E13EDB700E12008 /* EasyRandom */;
-			productType = "com.apple.product-type.tool";
+			productReference = 4F76EFA11E18D8880013BA91 /* EasyRandom.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		4F76EFA81E18D8880013BA91 /* EasyRandomTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4F76EFB51E18D8890013BA91 /* Build configuration list for PBXNativeTarget "EasyRandomTests" */;
+			buildPhases = (
+				4F76EFA51E18D8880013BA91 /* Sources */,
+				4F76EFA61E18D8880013BA91 /* Frameworks */,
+				4F76EFA71E18D8880013BA91 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F76EFAC1E18D8890013BA91 /* PBXTargetDependency */,
+			);
+			name = EasyRandomTests;
+			productName = EasyRandomTests;
+			productReference = 4F76EFA91E18D8880013BA91 /* EasyRandomTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -112,9 +269,22 @@
 				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = "Helloworld Park";
 				TargetAttributes = {
-					4F371E911E13EDB700E12008 = {
+					4F4FCEC21E18E1B800540AF9 = {
 						CreatedOnToolsVersion = 8.2;
-						LastSwiftMigration = 0820;
+						DevelopmentTeam = PTXQ5VER9D;
+						ProvisioningStyle = Automatic;
+					};
+					4F4FCECA1E18E1B800540AF9 = {
+						CreatedOnToolsVersion = 8.2;
+						DevelopmentTeam = PTXQ5VER9D;
+						ProvisioningStyle = Automatic;
+					};
+					4F76EFA01E18D8880013BA91 = {
+						CreatedOnToolsVersion = 8.2;
+						ProvisioningStyle = Automatic;
+					};
+					4F76EFA81E18D8880013BA91 = {
+						CreatedOnToolsVersion = 8.2;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -131,32 +301,96 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4F371E911E13EDB700E12008 /* EasyRandom */,
+				4F76EFA01E18D8880013BA91 /* EasyRandom */,
+				4F76EFA81E18D8880013BA91 /* EasyRandomTests */,
+				4F4FCEC21E18E1B800540AF9 /* EasyRandom-macos */,
+				4F4FCECA1E18E1B800540AF9 /* EasyRandom-macosTests */,
 			);
 		};
 /* End PBXProject section */
 
+/* Begin PBXResourcesBuildPhase section */
+		4F4FCEC11E18E1B800540AF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F4FCEC91E18E1B800540AF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F76EF9F1E18D8880013BA91 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F76EFA71E18D8880013BA91 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
-		4F371E8E1E13EDB700E12008 /* Sources */ = {
+		4F4FCEBE1E18E1B800540AF9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F231FB41E18B5F900E5C7E5 /* ERContinuous.swift in Sources */,
-				4F231FB51E18B5F900E5C7E5 /* ERDiscrete.swift in Sources */,
-				4F231FB61E18B5F900E5C7E5 /* ERMathHelper.swift in Sources */,
-				4F231FB71E18B5F900E5C7E5 /* ERMathStruct.swift in Sources */,
-				4F231FB31E18B5F900E5C7E5 /* ERCollectionHelper.swift in Sources */,
-				4F231FB81E18B5F900E5C7E5 /* ERSpline.swift in Sources */,
-				4F371EA11E13EFDD00E12008 /* ERGenerator.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F4FCEC71E18E1B800540AF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F4FCED11E18E1B800540AF9 /* EasyRandom_macosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F76EF9C1E18D8880013BA91 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4F76EFA51E18D8880013BA91 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4F76EFAF1E18D8890013BA91 /* EasyRandomTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		4F4FCECE1E18E1B800540AF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F4FCEC21E18E1B800540AF9 /* EasyRandom-macos */;
+			targetProxy = 4F4FCECD1E18E1B800540AF9 /* PBXContainerItemProxy */;
+		};
+		4F76EFAC1E18D8890013BA91 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4F76EFA01E18D8880013BA91 /* EasyRandom */;
+			targetProxy = 4F76EFAB1E18D8890013BA91 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
 		4F371E971E13EDB700E12008 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -197,7 +431,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = macosx;
+				SDKROOT = iphoneos10.2;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -205,6 +440,7 @@
 		4F371E981E13EDB700E12008 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ADDITIONAL_SDKS = "";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
@@ -238,30 +474,182 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = macosx;
+				SDKROOT = iphoneos10.2;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 			};
 			name = Release;
 		};
-		4F371E9A1E13EDB700E12008 /* Debug */ = {
+		4F4FCED41E18E1B800540AF9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = PTXQ5VER9D;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "EasyRandom-macos/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.helloworldpark.EasyRandom-macos";
+				PRODUCT_NAME = EasyRandom;
+				SDKROOT = macosx10.12;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4F4FCED51E18E1B800540AF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = PTXQ5VER9D;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "EasyRandom-macos/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.helloworldpark.EasyRandom-macos";
+				PRODUCT_NAME = EasyRandom;
+				SDKROOT = macosx10.12;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4F4FCED61E18E1B800540AF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = PTXQ5VER9D;
+				INFOPLIST_FILE = "EasyRandom-macosTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.helloworldpark.EasyRandom-macosTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "EasyRandom-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
-		4F371E9B1E13EDB700E12008 /* Release */ = {
+		4F4FCED71E18E1B800540AF9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_ENABLE_MODULES = YES;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = PTXQ5VER9D;
+				INFOPLIST_FILE = "EasyRandom-macosTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "io.github.helloworldpark.EasyRandom-macosTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "EasyRandom-Bridging-Header.h";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4F76EFB31E18D8890013BA91 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = EasyRandom/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.helloworldpark.EasyRandom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4F76EFB41E18D8890013BA91 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = EasyRandom/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.helloworldpark.EasyRandom;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4F76EFB61E18D8890013BA91 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = EasyRandomTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.helloworldpark.EasyRandomTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		4F76EFB71E18D8890013BA91 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = EasyRandomTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = io.github.helloworldpark.EasyRandomTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 3.0;
+				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
 		};
@@ -277,11 +665,36 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4F371E991E13EDB700E12008 /* Build configuration list for PBXNativeTarget "EasyRandom" */ = {
+		4F4FCED81E18E1B800540AF9 /* Build configuration list for PBXNativeTarget "EasyRandom-macos" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4F371E9A1E13EDB700E12008 /* Debug */,
-				4F371E9B1E13EDB700E12008 /* Release */,
+				4F4FCED41E18E1B800540AF9 /* Debug */,
+				4F4FCED51E18E1B800540AF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		4F4FCED91E18E1B800540AF9 /* Build configuration list for PBXNativeTarget "EasyRandom-macosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F4FCED61E18E1B800540AF9 /* Debug */,
+				4F4FCED71E18E1B800540AF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		4F76EFB21E18D8890013BA91 /* Build configuration list for PBXNativeTarget "EasyRandom" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F76EFB31E18D8890013BA91 /* Debug */,
+				4F76EFB41E18D8890013BA91 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4F76EFB51E18D8890013BA91 /* Build configuration list for PBXNativeTarget "EasyRandomTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4F76EFB61E18D8890013BA91 /* Debug */,
+				4F76EFB71E18D8890013BA91 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
