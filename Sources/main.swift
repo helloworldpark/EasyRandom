@@ -31,7 +31,13 @@ let contiRandom = ERContinuousPDF(from: 0.0, to: 100.0, partition: 10) { t in
     return sin(M_PI*t*0.01)
 }
 let contiVariable = contiRandom.generate(count: 10000)
-for p in contiVariable {
+//for p in contiVariable {
+//    print("\(p)")
+//}
+//contiRandom.showInverseCDF()
+let cdfRandom = ERContinuousInvCDF(from: 0.0, to: 1.0) { pow($0, 3.0) }
+let cdfVariable = cdfRandom.generate(count: 10000)
+for p in cdfVariable {
     print("\(p)")
 }
-//contiRandom.showInverseCDF()
+

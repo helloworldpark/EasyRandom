@@ -87,3 +87,29 @@ public class ERContinuousCDF: RandomVariable {
         return arr
     }
 }
+
+public class ERContinuousInvCDF: RandomVariable {
+    private let invcdf : (Double)->Double
+    private let from: Double
+    private let to: Double
+    
+    public init(from: Double, to: Double, invcdf: @escaping (Double)->Double) {
+        precondition(to > from, "to must be bigger than from")
+        precondition(ERMathHelper.isMonotoneIncreasing(from: from, to: to, function: invcdf), "Cumulative Distribution Function is not monotone increasing")
+        self.from = from
+        self.to = to
+        self.invcdf = invcdf
+    }
+    
+    public func generate() -> Double {
+        return self.invcdf(ERMathHelper.random())
+    }
+    
+    public func generate(count: Int) -> [Double] {
+        var arr = [Double](repeating: 0, count: count)
+        for i in 0..<arr.count {
+            arr[i] = self.generate()
+        }
+        return arr
+    }
+}
