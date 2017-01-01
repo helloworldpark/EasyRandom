@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import EasyRandom_macos
+@testable import EasyRandom
 
 class EasyRandom_macosTests: XCTestCase {
     
@@ -24,6 +24,12 @@ class EasyRandom_macosTests: XCTestCase {
     func testExample() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
+        let discreteBuilder = ERDiscreteBuilder<String>()
+        discreteBuilder.append("Foo", 0.42).append("Bar", 0.58)
+        let discreteRandoms = discreteBuilder.create().generate(count: 10000)
+        for foobar in discreteRandoms {
+            print(foobar)
+        }
     }
     
     func testPerformanceExample() {
