@@ -2,7 +2,7 @@
 //  ERMathHelper.swift
 //  EasyRandom
 //
-//  Created by LinePlus on 2016. 12. 28..
+//  Created by Helloworld Park on 2016. 12. 28..
 //  Copyright © 2016년 Helloworld Park. All rights reserved.
 //
 
@@ -63,10 +63,11 @@ extension ERMathHelper {
 
 // MARK: Root Finding
 extension ERMathHelper {
-    // findRoot(y, a, b, f(t))->x
-    // Find x s.t. y = f(x)
-    // Expecting that f(x) is monotone function
-    // Internally using bisection algorithm
+    /*
+     * Find x s.t. y = f(x)
+     * Expecting that f(x) is monotone function
+     * Uses Bisection Algorithm
+     */
     public static func root(find y: Double, from a: Double, to b:Double, function f: (Double)->Double)->Double {
         precondition(y < f(b) && f(a) < y, "y = \(y) must be between f(from) = \(f(a)) and f(to) = \(f(b))")
         var iteration = 0
@@ -118,7 +119,11 @@ extension ERMathHelper {
 
 // MARK: Spline Interpolation
 extension ERMathHelper {
-    // spline(from, to, partition, function)->[Spline]
+    /*
+     * Find a collection of Spline structs s.t.
+     * interpolates the given function using cubic spline
+     * Reference: http://www.geos.ed.ac.uk/~yliu23/docs/lect_spline.pdf
+     */
     public static func spline(from: Double, to: Double, partition: Int, function f: (Double)->Double)->[Spline] {
         precondition(partition > 2, "Partition should be equal or more than 3 for spline interpolation")
         var data = [Coord2D](repeating: Coord2D(x: 0.0, y: 0.0), count: partition+1)
@@ -130,7 +135,11 @@ extension ERMathHelper {
         return ERMathHelper.spline(data: data)
     }
     
-    // spline(data: [Coord2D])->[Spline]
+    /*
+     * Find a collection of Spline structs s.t.
+     * interpolates the given data using cubic spline
+     * Reference: http://www.geos.ed.ac.uk/~yliu23/docs/lect_spline.pdf
+     */
     public static func spline(data: [Coord2D])->[Spline] {
         // Assume that datas are N+1, 0 to N
         let N = data.count-1
@@ -193,10 +202,12 @@ extension ERMathHelper {
                                  -0.3399810435848563: 0.6521451548625461,
                                  0.3399810435848563: 0.6521451548625461,
                                  0.8611363115940526: 0.3478548451374539]
-    // integrate(from, to, function) -> Double
-    // Definite Integral of f(x) from a to b
-    // Internally using Repeated Gaussian Quadrature of n = 2
     
+    /*
+     * Find definite integral of given function on the given interval
+     * Uses Gaussian Quadrature of Order 2, 3, 4
+     * Reference: orion.math.iastate.edu/keinert/computation_notes/chapter5.pdf
+     */
     public static func integrate(from a: Double, to b: Double, partition n: Int = ERMathHelper.defaultPartition, function f: (Double)->Double)->Double {
         return ERMathHelper.integrate2(from: a, to: b, partition: n, function: f)
     }

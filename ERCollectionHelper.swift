@@ -2,18 +2,26 @@
 //  ERCollectionHelper.swift
 //  EasyRandom
 //
-//  Created by LinePlus on 2016. 12. 30..
+//  Created by Helloworld Park on 2016. 12. 30..
 //  Copyright © 2016년 Helloworld Park. All rights reserved.
 //
 
 import Foundation
 
+/*
+ * Protocol for searching the interval for a given number in a collection
+ */
 protocol RangeSearchable {
     associatedtype T: Comparable
     var keyword: T { get }
 }
 
 extension Collection where Iterator.Element: RangeSearchable, Index == Int {
+    /*
+     * Given y, find index i s.t. self[i] <= y < self[i+1]
+     * Assumes that the collection is sorted
+     * Uses Binary Search Algorithm
+     */
     func rangeSearch(with y: Iterator.Element.T) -> (from: Int, to: Int)? {
         guard y >= self[0].keyword && y < self[self.endIndex-1].keyword else {
             return nil
@@ -44,12 +52,5 @@ extension Collection where Iterator.Element == Coord2D, Index == Int {
         return self.sorted { c1, c2 in
             return c1.y < c2.y
         }
-    }
-    
-    func xrange(y: Double) -> (x1: Double, x2: Double)? {
-        guard let indexRange = self.rangeSearch(with: y) else {
-            return nil
-        }
-        return (x1: self[indexRange.from].x, x2: self[indexRange.to].x)
     }
 }

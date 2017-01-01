@@ -2,7 +2,7 @@
 //  ERContinuous.swift
 //  EasyRandom
 //
-//  Created by LinePlus on 2016. 12. 31..
+//  Created by Helloworld Park on 2016. 12. 31..
 //  Copyright © 2016년 Helloworld Park. All rights reserved.
 //
 
@@ -69,7 +69,7 @@ open class ERContinuousCDF: RandomVariable {
     
     public init(from: Double, to: Double, cdf: @escaping (Double)->Double) {
         precondition(to > from, "'to(\(to))' must be bigger than 'from\(from)'")
-        precondition(ERMathHelper.isMonotoneIncreasing(from: from, to: to, function: cdf), "Cumulative Distribution Function is not monotone increasing")
+        precondition(ERMathHelper.isMonotoneIncreasing(from: from, to: to, function: cdf), "Cumulative Distribution Function must be monotone increasing")
         self.from = from
         self.to = to
         self.cdf = cdf
@@ -96,7 +96,7 @@ open class ERContinuousInvCDF: RandomVariable {
     
     public init(from: Double, to: Double, invcdf: @escaping (Double)->Double) {
         precondition(to > from, "'to(\(to))' must be bigger than 'from\(from)'")
-        precondition(ERMathHelper.isMonotoneIncreasing(from: from, to: to, function: invcdf), "Inverse Cumulative Distribution Function is not monotone increasing")
+        precondition(ERMathHelper.isMonotoneIncreasing(from: from, to: to, function: invcdf), "Inverse Cumulative Distribution Function must be monotone increasing")
         self.from = from
         self.to = to
         self.invcdf = invcdf

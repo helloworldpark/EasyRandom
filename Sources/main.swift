@@ -2,7 +2,7 @@
 //  main.swift
 //  EasyRandom
 //
-//  Created by LinePlus on 2016. 12. 28..
+//  Created by Helloworld Park on 2016. 12. 28..
 //  Copyright © 2016년 Helloworld Park. All rights reserved.
 //
 
@@ -27,17 +27,10 @@ testIsFunctionNegative()
 //    print("p \(p)")
 //}
 
-let contiRandom = ERContinuousPDF(from: 0.0, to: 100.0, partition: 10) { t in
-    return sin(M_PI*t*0.01)
-}
-let contiVariable = contiRandom.generate(count: 10000)
-//for p in contiVariable {
-//    print("\(p)")
-//}
-//contiRandom.showInverseCDF()
-let cdfRandom = ERContinuousInvCDF(from: 0.0, to: 1.0) { pow($0, 3.0) }
-let cdfVariable = cdfRandom.generate(count: 10000)
-for p in cdfVariable {
+let pdf = ERContinuousFactory(from: 0.0, to: 1.0).pdf { 6.0 * $0 * (1.0 - $0) }
+let rvs = pdf.generate(count: 10000)
+for p in rvs {
     print("\(p)")
 }
+
 

@@ -2,7 +2,7 @@
 //  ERDiscrete.swift
 //  EasyRandom
 //
-//  Created by LinePlus on 2016. 12. 29..
+//  Created by Helloworld Park on 2016. 12. 29..
 //  Copyright © 2016년 Helloworld Park. All rights reserved.
 //
 

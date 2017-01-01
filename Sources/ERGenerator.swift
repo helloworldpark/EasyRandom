@@ -2,7 +2,7 @@
 //  RandomVariable.swift
 //  EasyRandom
 //
-//  Created by LinePlus on 2016. 12. 28..
+//  Created by Helloworld Park on 2016. 12. 28..
 //  Copyright © 2016년 Helloworld Park. All rights reserved.
 //
 
@@ -14,7 +14,8 @@ protocol RandomVariable {
     func generate(count: Int) -> [T]
 }
 
-public class ERDiscreteGeneratorBuilder<T> {
+// Helper class for discrete random variable
+public class ERDiscreteBuilder<T> {
     private var variable: [T]
     private var probability: [Double]
     
@@ -34,7 +35,8 @@ public class ERDiscreteGeneratorBuilder<T> {
     }
 }
 
-public class ERContinuousGeneratorFactory {
+// Helper class for continuous random variable
+public class ERContinuousFactory {
     private var from: Double
     private var to: Double
     
@@ -43,15 +45,15 @@ public class ERContinuousGeneratorFactory {
         self.to = to
     }
     
-    public func pdf(_ f: @escaping ((Double)->Double), partition: Int = 50) -> ERContinuousPDF {
+    public func pdf(partition: Int = 50, _ f: @escaping (Double)->Double) -> ERContinuousPDF {
         return ERContinuousPDF(from: self.from, to: self.to, partition: partition, pdf: f)
     }
     
-    public func cdf(_ f: @escaping ((Double)->Double)) -> ERContinuousCDF {
+    public func cdf(_ f: @escaping (Double)->Double) -> ERContinuousCDF {
         return ERContinuousCDF(from: self.from, to: self.to, cdf: f)
     }
     
-    public func inverseCDF(_ f: @escaping ((Double)->Double)) -> ERContinuousInvCDF {
+    public func inverseCDF(_ f: @escaping (Double)->Double) -> ERContinuousInvCDF {
         return ERContinuousInvCDF(from: self.from, to: self.to, invcdf: f)
     }
 }
