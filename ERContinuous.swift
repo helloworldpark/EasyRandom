@@ -13,6 +13,7 @@ public class ERContinuousPDF: RandomVariable {
     private let inverseCDF: SplineMachine
     
     init(from: Double, to: Double, partition p: Int, pdf f: (Double)->Double) {
+        precondition(to > from, "'to(\(to))' must be bigger than 'from\(from)'")
         // Check negativeness of function
         precondition(p > 0, "Partitioning must be bigger than 0")
         precondition(ERMathHelper.isFunctionNegative(from: from, to: to, function: f) == false, "Probability Density function must be positive")
@@ -67,7 +68,7 @@ public class ERContinuousCDF: RandomVariable {
     private let to: Double
     
     public init(from: Double, to: Double, cdf: @escaping (Double)->Double) {
-        precondition(to > from, "to must be bigger than from")
+        precondition(to > from, "'to(\(to))' must be bigger than 'from\(from)'")
         precondition(ERMathHelper.isMonotoneIncreasing(from: from, to: to, function: cdf), "Cumulative Distribution Function is not monotone increasing")
         self.from = from
         self.to = to
@@ -94,8 +95,8 @@ public class ERContinuousInvCDF: RandomVariable {
     private let to: Double
     
     public init(from: Double, to: Double, invcdf: @escaping (Double)->Double) {
-        precondition(to > from, "to must be bigger than from")
-        precondition(ERMathHelper.isMonotoneIncreasing(from: from, to: to, function: invcdf), "Cumulative Distribution Function is not monotone increasing")
+        precondition(to > from, "'to(\(to))' must be bigger than 'from\(from)'")
+        precondition(ERMathHelper.isMonotoneIncreasing(from: from, to: to, function: invcdf), "Inverse Cumulative Distribution Function is not monotone increasing")
         self.from = from
         self.to = to
         self.invcdf = invcdf

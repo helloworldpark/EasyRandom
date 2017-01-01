@@ -14,17 +14,4 @@ protocol RandomVariable {
     func generate(count: Int) -> [T]
 }
 
-public class ERGenerator {
-    
-    // Integrator
-    
-    // Spline Coef. Holder
-    
-    
-    // Init: domain, function, parameter
-    
-    // generate()
-    
-    // generate(count: int)
-    
-}
+

@@ -8,37 +8,20 @@
 
 import Foundation
 
-internal struct DiscreteVariable: Equatable, RangeSearchable {
-    let x: Int
-    let y: Double
-    var keyword: Double {
-        return self.y
-    }
-    
-    init(x: Int, y: Double) {
-        self.x = x
-        self.y = y
-    }
-    
-    static func ==(lhs: DiscreteVariable, rhs: DiscreteVariable) -> Bool {
-        return lhs.x == rhs.x && lhs.y == rhs.y
-    }
-}
-
 public class ERDiscreteMachine : RandomVariable {
-    let cumulated: [DiscreteVariable]
+    let cumulated: [IntCoord2D]
     
-    init(histogram: [DiscreteVariable]) {
+    public init(histogram: [IntCoord2D]) {
         precondition(histogram.count != 0, "Empty Histogram!")
         let sum = histogram.reduce(0.0) { result, coord in result + (coord.y >= 0.0 ? coord.y: 0.0) }
-        var cumulative = [DiscreteVariable](repeating: DiscreteVariable(x: 0, y: 0.0), count: histogram.count+1)
+        var cumulative = [IntCoord2D](repeating: IntCoord2D(x: 0, y: 0.0), count: histogram.count+1)
         var cumsum = 0.0
         for i in 0..<histogram.count {
-            cumulative[i] = DiscreteVariable(x: histogram[i].x, y: cumsum / sum)
+            cumulative[i] = IntCoord2D(x: histogram[i].x, y: cumsum / sum)
             cumsum += (histogram[i].y >= 0.0 ? histogram[i].y : 0.0)
         }
         // Dummy
-        cumulative[cumulative.count-1] = DiscreteVariable(x: histogram.last!.x + 1, y: 1.0)
+        cumulative[cumulative.count-1] = IntCoord2D(x: histogram.last!.x + 1, y: 1.0)
         self.cumulated = cumulative
     }
     
@@ -63,9 +46,9 @@ public class ERDiscreteGenerator<T> : RandomVariable {
     fileprivate init(x: [T], probability: [Double]) {
         precondition(x.count == probability.count, "Size of X and Probability arrays do not match.")
         self.variable = x
-        var histogram = [DiscreteVariable]()
+        var histogram = [IntCoord2D]()
         for i in 0..<probability.count {
-            histogram.append(DiscreteVariable(x: i, y: probability[i]))
+            histogram.append(IntCoord2D(x: i, y: probability[i]))
         }
         self.discreteMachine = ERDiscreteMachine(histogram: histogram)
     }
@@ -83,7 +66,7 @@ public class ERDiscreteGeneratorBuilder<T> {
     private var variable: [T]
     private var probability: [Double]
     
-    init() {
+    public init() {
         self.variable = []
         self.probability = []
     }
