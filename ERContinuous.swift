@@ -8,10 +8,8 @@
 
 import Foundation
 
-typealias ContinuousVariable = Coord2D
-
-public class ERContinuousMachine: RandomVariable {
-    
+public class ERContinuousPDF: RandomVariable {
+    private static let maximumNorm = 1.0e-2
     private let inverseCDF: SplineMachine
     
     init(from: Double, to: Double, partition p: Int, pdf f: (Double)->Double) {
@@ -20,28 +18,24 @@ public class ERContinuousMachine: RandomVariable {
         precondition(ERMathHelper.isFunctionNegative(from: from, to: to, function: f) == false, "Probability Density function must be positive")
         
         var p_new = p
-        var candidateCDF = ERContinuousMachine.inverseCDF(from: from, to: to, partition: p_new, pdf: f)
-        while candidateCDF.norm > 0.01 {
+        var candidateCDF = ERContinuousPDF.inverseCDF(from: from, to: to, partition: p_new, pdf: f)
+        while candidateCDF.norm > ERContinuousPDF.maximumNorm {
             p_new *= 2
-            candidateCDF = ERContinuousMachine.inverseCDF(from: from, to: to, partition: p_new, pdf: f)
+            candidateCDF = ERContinuousPDF.inverseCDF(from: from, to: to, partition: p_new, pdf: f)
         }
         self.inverseCDF = candidateCDF
     }
     
-    func generate() -> Double {
+    public func generate() -> Double {
         return self.inverseCDF.at(ERMathHelper.random())
     }
     
-    func generate(count: Int) -> [Double] {
+    public func generate(count: Int) -> [Double] {
         var arr = [Double](repeating: 0, count: count)
         for i in 0..<arr.count {
             arr[i] = self.generate()
         }
         return arr
-    }
-    
-    func isMonotoneIncreasing() -> Bool {
-        return self.inverseCDF.isMonotoneIncreasing()
     }
     
     func showInverseCDF() {
@@ -51,18 +45,45 @@ public class ERContinuousMachine: RandomVariable {
     private static func inverseCDF(from: Double, to: Double, partition p: Int, pdf f: (Double)->Double) -> SplineMachine {
         // Find integral of the function for each partition
         let h = (to - from) / Double(p)
-        var invCdf = [ContinuousVariable](repeating: ContinuousVariable(x:0.0, y:0.0), count: p+1)
-        invCdf[0] = ContinuousVariable(x:0.0, y: from)
+        var invCdf = [Coord2D](repeating: Coord2D(x:0.0, y:0.0), count: p+1)
+        invCdf[0] = Coord2D(x:0.0, y: from)
         for i in 1...p {
             let x1 = from + h * Double(i-1)
             let x2 = from + h * Double(i)
             let integral = ERMathHelper.integrate4(from: x1, to: x2, function: f)
-            invCdf[i] = ContinuousVariable(x: integral + invCdf[i-1].x, y: x2)
+            invCdf[i] = Coord2D(x: integral + invCdf[i-1].x, y: x2)
         }
         let totalIntegral = invCdf.last!.x
         for i in 0...p {
-            invCdf[i] = ContinuousVariable(x: invCdf[i].x/totalIntegral, y: invCdf[i].y)
+            invCdf[i] = Coord2D(x: invCdf[i].x/totalIntegral, y: invCdf[i].y)
         }
         return SplineMachine(data: invCdf)
+    }
+}
+
+public class ERContinuousCDF: RandomVariable {
+    private let cdf : (Double)->Double
+    private let from: Double
+    private let to: Double
+    
+    public init(from: Double, to: Double, cdf: @escaping (Double)->Double) {
+        precondition(to > from, "to must be bigger than from")
+        precondition(ERMathHelper.isMonotoneIncreasing(from: from, to: to, function: cdf), "Cumulative Distribution Function is not monotone increasing")
+        self.from = from
+        self.to = to
+        self.cdf = cdf
+    }
+    
+    public func generate() -> Double {
+        let p = ERMathHelper.random()
+        return ERMathHelper.root(find: p, from: from, to: to, function: self.cdf)
+    }
+    
+    public func generate(count: Int) -> [Double] {
+        var arr = [Double](repeating: 0, count: count)
+        for i in 0..<arr.count {
+            arr[i] = self.generate()
+        }
+        return arr
     }
 }

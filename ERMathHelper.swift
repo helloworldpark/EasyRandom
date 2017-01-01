@@ -42,6 +42,21 @@ extension ERMathHelper {
         }
         return false
     }
+    
+    public static func isMonotoneIncreasing(from: Double, to: Double, function f: (Double)->Double) -> Bool {
+        let n = 100
+        let h = (to - from)/Double(n)
+        var y_old = f(from)
+        for i in 1...n {
+            let x = from + h * Double(i)
+            let y = f(x)
+            if y - y_old < 0.0 {
+                return false
+            }
+            y_old = y
+        }
+        return true
+    }
 }
 
 // MARK: Root Finding

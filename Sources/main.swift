@@ -27,10 +27,9 @@ testIsFunctionNegative()
 //    print("p \(p)")
 //}
 
-let contiRandom = ERContinuousMachine(from: 0.0, to: 100.0, partition: 10) { t in
+let contiRandom = ERContinuousPDF(from: 0.0, to: 100.0, partition: 10) { t in
     return sin(M_PI*t*0.01)
 }
-print("is monotone increasing: \(contiRandom.isMonotoneIncreasing())")
 let contiVariable = contiRandom.generate(count: 10000)
 for p in contiVariable {
     print("\(p)")
