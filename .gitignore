@@ -66,4 +66,4 @@ fastlane/test_output
 
 # Project-Specific Things
 main.swift
-./Test/**
+Test/**
