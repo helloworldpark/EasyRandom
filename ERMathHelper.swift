@@ -12,6 +12,8 @@ public class ERMathHelper {
     fileprivate static let maxIteration = 10
     fileprivate static let eps = 1.0e-10
     
+    private init() {}
+    
     public static func random() -> Double {
         return Double(arc4random())/Double(UINT32_MAX)
     }

@@ -19,7 +19,7 @@ public struct Spline: Equatable, Comparable, RangeSearchable {
         return self.from
     }
     
-    init(from: Double, to: Double, cubic: CubicPolynomial) {
+    public init(from: Double, to: Double, cubic: CubicPolynomial) {
         self.from = from
         self.to = to
         self.dx = to - from
@@ -74,7 +74,7 @@ public struct SplineMachine {
     private let spline: [Spline]
     public let norm: Double
     
-    init(data: [Coord2D]) {
+    public init(data: [Coord2D]) {
         var spline = ERMathHelper.spline(data: data)
         spline.sort()
         var norm = spline.first!.to - spline.first!.from
@@ -88,7 +88,7 @@ public struct SplineMachine {
         self.spline = spline
     }
     
-    init(from: Double, to: Double, partition: Int, function: (Double)->Double) {
+    public init(from: Double, to: Double, partition: Int, function: (Double)->Double) {
         var spline = ERMathHelper.spline(from: from, to: to, partition: partition, function: function)
         spline.sort()
         var norm = spline.first!.to - spline.first!.from

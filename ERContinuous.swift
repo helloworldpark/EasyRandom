@@ -8,11 +8,11 @@
 
 import Foundation
 
-public class ERContinuousPDF: RandomVariable {
-    private static let maximumNorm = 1.0e-2
-    private let inverseCDF: SplineMachine
+open class ERContinuousPDF: RandomVariable {
+    static let maximumNorm = 1.0e-2
+    let inverseCDF: SplineMachine
     
-    init(from: Double, to: Double, partition p: Int, pdf f: (Double)->Double) {
+    public init(from: Double, to: Double, partition p: Int, pdf f: (Double)->Double) {
         precondition(to > from, "'to(\(to))' must be bigger than 'from\(from)'")
         // Check negativeness of function
         precondition(p > 0, "Partitioning must be bigger than 0")
@@ -27,11 +27,11 @@ public class ERContinuousPDF: RandomVariable {
         self.inverseCDF = candidateCDF
     }
     
-    public func generate() -> Double {
+    open func generate() -> Double {
         return self.inverseCDF.at(ERMathHelper.random())
     }
     
-    public func generate(count: Int) -> [Double] {
+    open func generate(count: Int) -> [Double] {
         var arr = [Double](repeating: 0, count: count)
         for i in 0..<arr.count {
             arr[i] = self.generate()
@@ -62,10 +62,10 @@ public class ERContinuousPDF: RandomVariable {
     }
 }
 
-public class ERContinuousCDF: RandomVariable {
-    private let cdf : (Double)->Double
-    private let from: Double
-    private let to: Double
+open class ERContinuousCDF: RandomVariable {
+    let cdf : (Double)->Double
+    let from: Double
+    let to: Double
     
     public init(from: Double, to: Double, cdf: @escaping (Double)->Double) {
         precondition(to > from, "'to(\(to))' must be bigger than 'from\(from)'")
@@ -75,12 +75,12 @@ public class ERContinuousCDF: RandomVariable {
         self.cdf = cdf
     }
     
-    public func generate() -> Double {
+    open func generate() -> Double {
         let p = ERMathHelper.random()
         return ERMathHelper.root(find: p, from: from, to: to, function: self.cdf)
     }
     
-    public func generate(count: Int) -> [Double] {
+    open func generate(count: Int) -> [Double] {
         var arr = [Double](repeating: 0, count: count)
         for i in 0..<arr.count {
             arr[i] = self.generate()
@@ -89,10 +89,10 @@ public class ERContinuousCDF: RandomVariable {
     }
 }
 
-public class ERContinuousInvCDF: RandomVariable {
-    private let invcdf : (Double)->Double
-    private let from: Double
-    private let to: Double
+open class ERContinuousInvCDF: RandomVariable {
+    let invcdf : (Double)->Double
+    let from: Double
+    let to: Double
     
     public init(from: Double, to: Double, invcdf: @escaping (Double)->Double) {
         precondition(to > from, "'to(\(to))' must be bigger than 'from\(from)'")
@@ -102,11 +102,11 @@ public class ERContinuousInvCDF: RandomVariable {
         self.invcdf = invcdf
     }
     
-    public func generate() -> Double {
+    open func generate() -> Double {
         return self.invcdf(ERMathHelper.random())
     }
     
-    public func generate(count: Int) -> [Double] {
+    open func generate(count: Int) -> [Double] {
         var arr = [Double](repeating: 0, count: count)
         for i in 0..<arr.count {
             arr[i] = self.generate()

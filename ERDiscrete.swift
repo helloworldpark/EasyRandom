@@ -8,7 +8,30 @@
 
 import Foundation
 
-public class ERDiscreteMachine : RandomVariable {
+public class ERDiscrete<T> : RandomVariable {
+    private let discreteMachine: ERDiscreteCalculator
+    private let variable: [T]
+    
+    public init(x: [T], probability: [Double]) {
+        precondition(x.count == probability.count, "Size of X and Probability arrays do not match.")
+        self.variable = x
+        var histogram = [IntCoord2D]()
+        for i in 0..<probability.count {
+            histogram.append(IntCoord2D(x: i, y: probability[i]))
+        }
+        self.discreteMachine = ERDiscreteCalculator(histogram: histogram)
+    }
+    
+    open func generate() -> T {
+        return self.variable[discreteMachine.generate()]
+    }
+    
+    open func generate(count: Int) -> [T] {
+        return self.discreteMachine.generate(count: count).map { self.variable[$0] }
+    }
+}
+
+open class ERDiscreteCalculator : RandomVariable {
     let cumulated: [IntCoord2D]
     
     public init(histogram: [IntCoord2D]) {
@@ -25,59 +48,16 @@ public class ERDiscreteMachine : RandomVariable {
         self.cumulated = cumulative
     }
     
-    func generate() -> Int {
+    open func generate() -> Int {
         let u = ERMathHelper.random()
         return self.cumulated[self.cumulated.rangeSearch(with: u)!.from].x
     }
     
-    func generate(count: Int) -> [Int] {
+    open func generate(count: Int) -> [Int] {
         var arr = [Int](repeating: 0, count: count)
         for i in 0..<arr.count {
             arr[i] = self.generate()
         }
         return arr
-    }
-}
-
-public class ERDiscreteGenerator<T> : RandomVariable {
-    private let discreteMachine: ERDiscreteMachine
-    private let variable: [T]
-    
-    fileprivate init(x: [T], probability: [Double]) {
-        precondition(x.count == probability.count, "Size of X and Probability arrays do not match.")
-        self.variable = x
-        var histogram = [IntCoord2D]()
-        for i in 0..<probability.count {
-            histogram.append(IntCoord2D(x: i, y: probability[i]))
-        }
-        self.discreteMachine = ERDiscreteMachine(histogram: histogram)
-    }
-    
-    func generate() -> T {
-        return self.variable[discreteMachine.generate()]
-    }
-    
-    func generate(count: Int) -> [T] {
-        return self.discreteMachine.generate(count: count).map { self.variable[$0] }
-    }
-}
-
-public class ERDiscreteGeneratorBuilder<T> {
-    private var variable: [T]
-    private var probability: [Double]
-    
-    public init() {
-        self.variable = []
-        self.probability = []
-    }
-    
-    public func append(x: T, p: Double) -> Self {
-        self.variable.append(x)
-        self.probability.append(p)
-        return self
-    }
-    
-    public func create() -> ERDiscreteGenerator<T> {
-        return ERDiscreteGenerator(x: variable, probability: probability)
     }
 }
